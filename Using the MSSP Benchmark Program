@@ -1,0 +1,44 @@
+The MSSP_Benchmark.jar is a program designed to generate MSSP instances based on user configuration. 
+
+It can also evaluate solutions provided to it. The program is capable of performing both actions based on
+the arguments it has received.
+
+To do instance generation:
+
+java -jar .\MSSP_Benchmark.jar gen config.txt
+
+The first argument is the gen string that tells it to perform generation. It is case sensitive. The 
+second argument is the config file that contains the configurations for the generator.
+
+The format of the config file is as follows:
+type: description of the set of data you are creating. Included in the file name.
+num instances: number of instances to generate
+cost limit
+time limit
+num actors
+num scenes
+num locations
+lower wage bound, upper wage bound
+lower scene duration bound, upper scene duration bound
+lower scene transition cost bound, upper scene transition cost bound
+lower location transfer time bound, upper location transfer time bound
+
+To do function evaluation:
+
+java -jar .\MSSP_Benchmark.jar eval sols.txt instances.txt
+
+The first argument is the eval string that tells it to perform function evaluation. It is case sensitive. 
+The second argument is the file containing the solutions. Each solution is a string formatted to a given 
+structure with one solution per line. 
+
+The third argument is the file containing the instance data for each solution to be evaluated on. The first
+solution is going to be evaluated with the first instance and so on. Each solution must have an instance
+associated with it in order to evaluate properly. The instances should conform to the structure detailed
+in the readme. The file names should correspond to the names in the local directory. They can be named as you wish
+but it is important to keep the ordering correct.
+
+The format of the solutions is as follows: x,y,...,z
+
+The format is a comma-delimited list of integers. Each is a scene from the scene list, starting from 0 index.
+
+An example of a 5 scene solution would be 0,3,2,1,4
